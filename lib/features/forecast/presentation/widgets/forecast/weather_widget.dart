@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_mobile/features/forecast/presentation/widgets/lists/forecast_widget.dart';
 import '../../../../../core/resources/theme/colors.dart';
 import '../../../../../core/utils/date_time.dart';
 
@@ -19,358 +18,241 @@ class WeatherWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const SizedBox(height: 10,),
-                    Text(
-                      '${AppDateTime.getTimeOfDayGreeting()}, $name',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          temp.toInt().toString(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 120,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        Transform.translate(
-                          offset: const Offset(0, -36),
-                          child: Text(
-                            '°C',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 36,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
+                const SizedBox(height: 10,),
+                Text(
+                  '${AppDateTime.getTimeOfDayGreeting()}, $name',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  // mainAxisSize: MainAxisSize.min,
+                Row(
                   children: [
-                    CachedNetworkImage(
-                      imageUrl: 'http://openweathermap.org/img/w/$icon.png',
-                      imageBuilder: (context, imageProvide) => ClipRRect(
-                        child: Container(
-                          width: 120,
-                          height: 120,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(image: imageProvide, fit: BoxFit.cover)
-                          ),
-                        ),
-                      ),
-                      progressIndicatorBuilder: (context, url, downloadProgress) => ClipRRect(
-                        child: SizedBox(
-                          width: 120,
-                          height: 120,
-                          child: CupertinoActivityIndicator(),
-                        ),
-                      ),
-                      errorWidget: (context, url, error) => ClipRRect(
-                        child: SizedBox(
-                          width: 120,
-                          height: 120,
-                          child: Icon(Icons.error),
-                        ),
-                      ),
-                    ),
                     Text(
-                      desc,
+                      temp.toInt().toString(),
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 20,
+                        fontSize: 120,
                         fontWeight: FontWeight.w600,
                       ),
-                    )
+                    ),
+                    Transform.translate(
+                      offset: const Offset(0, -36),
+                      child: Text(
+                        '°C',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 36,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
                   ],
-                ),
+                )
               ],
             ),
-            Text(
-              AppDateTime.formatDateNow(),
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 10,),
-            Card(
-                elevation: 0,
-                color: AppColors.blackOpacity,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              // mainAxisSize: MainAxisSize.min,
+              children: [
+                CachedNetworkImage(
+                  imageUrl: 'http://openweathermap.org/img/w/$icon.png',
+                  imageBuilder: (context, imageProvide) => ClipRRect(
+                    child: Container(
+                      width: 120,
+                      height: 120,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(image: imageProvide, fit: BoxFit.cover)
+                      ),
+                    ),
+                  ),
+                  progressIndicatorBuilder: (context, url, downloadProgress) => ClipRRect(
+                    child: SizedBox(
+                      width: 120,
+                      height: 120,
+                      child: CupertinoActivityIndicator(),
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => ClipRRect(
+                    child: SizedBox(
+                      width: 120,
+                      height: 120,
+                      child: Icon(Icons.error),
+                    ),
+                  ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 16, end: 16, top: 10, bottom: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Text(
+                  desc,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+        Text(
+          AppDateTime.formatDateNow(),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(height: 10,),
+        Card(
+            elevation: 0,
+            color: AppColors.blackOpacity,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.only(start: 16, end: 16, top: 10, bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
                     children: [
-                      Column(
-                        children: [
-                          Image.asset(
-                            'assets/humidity.png',
-                            width: 50,
-                            height: 50,
-                            fit: BoxFit.cover,
-                          ),
-                          Text(
-                            '$humidity %',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          const Text(
-                            'Humidity',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          )
-                        ],
+                      Image.asset(
+                        'assets/humidity.png',
+                        width: 50,
+                        height: 50,
+                        fit: BoxFit.cover,
                       ),
-                      Column(
-                        children: [
-                        Image.asset(
-                          'assets/pressure.png',
-                          width: 50,
-                          height: 50,
-                          fit: BoxFit.cover,
+                      Text(
+                        '$humidity %',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
                         ),
-                          Text(
-                            '$pressure hPa',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          const Text(
-                            'Pressure',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          )
-                        ],
                       ),
-                      Column(
-                        children: [
-                          CachedNetworkImage(
-                            imageUrl: 'http://openweathermap.org/img/w/$icon.png',
-                            imageBuilder: (context, imageProvide) => ClipRRect(
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(image: imageProvide, fit: BoxFit.cover)
-                                ),
-                              ),
-                            ),
-                            progressIndicatorBuilder: (context, url, downloadProgress) => ClipRRect(
-                              child: SizedBox(
-                                width: 50,
-                                height: 50,
-                                child: CupertinoActivityIndicator(),
-                              ),
-                            ),
-                            errorWidget: (context, url, error) => ClipRRect(
-                              child: SizedBox(
-                                width: 50,
-                                height: 50,
-                                child: Icon(Icons.error),
-                              ),
-                            ),
-                          ),
-                          Text(
-                            '$temp °C',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Text(
-                            'Feels Like',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          )
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Image.asset(
-                            'assets/storm.png',
-                            width: 50,
-                            height: 50,
-                            fit: BoxFit.cover,
-                          ),
-                          Text(
-                            '$wind m/s',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          const Text(
-                            'Wind',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          )
-                        ],
+                      const Text(
+                        'Humidity',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
                       )
                     ],
                   ),
-                )
-            ),
-            const SizedBox(height: 2,),
-            Card(
-                elevation: 0,
-                color: AppColors.blackOpacity,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                child: Padding(
-                    padding: const EdgeInsetsDirectional.only(start: 16, end: 16, top: 10, bottom: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Sun, 5 Jan',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
+                  Column(
+                    children: [
+                      Image.asset(
+                        'assets/pressure.png',
+                        width: 50,
+                        height: 50,
+                        fit: BoxFit.cover,
+                      ),
+                      Text(
+                        '$pressure hPa',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const Text(
+                        'Pressure',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      )
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      CachedNetworkImage(
+                        imageUrl: 'http://openweathermap.org/img/w/$icon.png',
+                        imageBuilder: (context, imageProvide) => ClipRRect(
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(image: imageProvide, fit: BoxFit.cover)
+                            ),
                           ),
                         ),
-                        const SizedBox(height: 10,),
-                        SizedBox(
-                          height: 90,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 10,
-                            itemBuilder: (context, index) {
-                              return ForecastWidget();
-                            },
+                        progressIndicatorBuilder: (context, url, downloadProgress) => ClipRRect(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: CupertinoActivityIndicator(),
                           ),
                         ),
-                        const SizedBox(height: 20,),
-                        const Text(
-                          'Sun, 5 Jan',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
+                        errorWidget: (context, url, error) => ClipRRect(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: Icon(Icons.error),
                           ),
                         ),
-                        const SizedBox(height: 10,),
-                        SizedBox(
-                          height: 90,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 10,
-                            itemBuilder: (context, index) {
-                              return ForecastWidget();
-                            },
-                          ),
+                      ),
+                      Text(
+                        '$temp °C',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
                         ),
-                        const SizedBox(height: 20,),
-                        const Text(
-                          'Sun, 5 Jan',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
+                      ),
+                      Text(
+                        'Feels Like',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
                         ),
-                        const SizedBox(height: 10,),
-                        SizedBox(
-                          height: 90,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 10,
-                            itemBuilder: (context, index) {
-                              return ForecastWidget();
-                            },
-                          ),
+                      )
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Image.asset(
+                        'assets/storm.png',
+                        width: 50,
+                        height: 50,
+                        fit: BoxFit.cover,
+                      ),
+                      Text(
+                        '$wind m/s',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
                         ),
-                        const SizedBox(height: 20,),
-                        const Text(
-                          'Sun, 5 Jan',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
+                      ),
+                      const Text(
+                        'Wind',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
                         ),
-                        const SizedBox(height: 10,),
-                        SizedBox(
-                          height: 90,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 10,
-                            itemBuilder: (context, index) {
-                              return ForecastWidget();
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: 20,),
-                        const Text(
-                          'Sun, 5 Jan',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(height: 10,),
-                        SizedBox(
-                          height: 90,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 10,
-                            itemBuilder: (context, index) {
-                              return ForecastWidget();
-                            },
-                          ),
-                        ),
-                      ],
-                    )
-                )
+                      )
+                    ],
+                  )
+                ],
+              ),
             )
-          ],
-        )
+        ),
+      ],
     );
   }
 }
