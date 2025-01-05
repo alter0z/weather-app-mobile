@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_mobile/features/forecast/domain/usecases/forecast.dart';
 import 'package:weather_mobile/features/forecast/domain/usecases/geo.dart';
 import 'package:weather_mobile/features/forecast/domain/usecases/weather.dart';
 import 'package:weather_mobile/features/forecast/presentation/bloc/weather/weather_event.dart';
@@ -9,11 +8,9 @@ import '../../../../../core/resources/data/data_state.dart';
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final GetGeoUseCase _geoUseCase;
   final GetWeatherUseCase _getWeatherUseCase;
-  final GetForecastUseCase _getForecastUseCase;
-  WeatherBloc(this._geoUseCase, this._getWeatherUseCase, this._getForecastUseCase) : super(GeoLoading()) {
+  WeatherBloc(this._geoUseCase, this._getWeatherUseCase) : super(GeoLoading()) {
     on<GetGeo>(onGetGeo);
     on<GetCurrentWeather>(onGetCurrentWeather);
-    on<GetForecast>(onForecast);
   }
 
   void onGetGeo(GetGeo event, Emitter<WeatherState> emit) async {
@@ -39,19 +36,6 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
     if (dataState is DataFailed) {
       emit(WeatherError(dataState.error!));
-    }
-  }
-
-  void onForecast(GetForecast event, Emitter<WeatherState> emit) async {
-    emit(ForecastLoading());
-    final dataState = await _getForecastUseCase(event.lat, event.lon);
-
-    if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
-      emit(ForecastDone(dataState.data!));
-    }
-
-    if (dataState is DataFailed) {
-      emit(ForecastError(dataState.error!));
     }
   }
 }

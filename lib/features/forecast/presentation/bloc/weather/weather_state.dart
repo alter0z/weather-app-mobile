@@ -47,23 +47,3 @@ class WeatherError extends WeatherState {
   @override
   List<Object> get props => [error];
 }
-
-class ForecastLoading extends WeatherState {}
-
-class ForecastDone extends WeatherState {
-  final List<WeatherResponseModel> forecast;
-
-  ForecastDone(this.forecast);
-
-  @override
-  List<Object> get props => [forecast];
-}
-
-class ForecastError extends WeatherState {
-  final DioException error;
-
-  ForecastError(this.error);
-
-  @override
-  List<Object> get props => [error];
-}

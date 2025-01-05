@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:weather_mobile/features/forecast/presentation/pages/form_screen.dart';
-import 'package:weather_mobile/features/forecast/presentation/pages/weather_screen.dart';
-
+import 'features/forecast/presentation/pages/form_screen.dart';
 import 'injection_container.dart';
 
 void main() async {

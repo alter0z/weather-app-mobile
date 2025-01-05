@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:weather_mobile/core/utils/date_time.dart';
+import 'package:weather_mobile/features/forecast/data/models/weather_response.dart';
 import '../../../../../core/resources/theme/colors.dart';
 import '../lists/forecast_list_widget.dart';
 
 class ForecastWidget extends StatelessWidget {
-  const ForecastWidget({super.key});
+  final List<List<WeatherResponseModel>> data;
+  const ForecastWidget({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +21,8 @@ class ForecastWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Sun, 5 Jan',
+                Text(
+                  AppDateTime.getDate(data[0][0].dtTxt ?? ""),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 14,
@@ -31,15 +34,19 @@ class ForecastWidget extends StatelessWidget {
                   height: 90,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 10,
+                    itemCount: data[0].length,
                     itemBuilder: (context, index) {
-                      return ForecastListWidget();
+                      return ForecastListWidget(
+                        temp: data[0][index].main?.temp ?? 0,
+                        icon: data[0][index].weather?[0].icon ?? "",
+                        time: data[0][index].dtTxt ?? "",
+                      );
                     },
                   ),
                 ),
                 const SizedBox(height: 20,),
-                const Text(
-                  'Sun, 5 Jan',
+                Text(
+                  AppDateTime.getDate(data[1][0].dtTxt ?? ""),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 14,
@@ -51,15 +58,19 @@ class ForecastWidget extends StatelessWidget {
                   height: 90,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 10,
+                    itemCount: data[1].length,
                     itemBuilder: (context, index) {
-                      return ForecastListWidget();
+                      return ForecastListWidget(
+                        temp: data[1][index].main?.temp ?? 0,
+                        icon: data[1][index].weather?[0].icon ?? "",
+                        time: data[1][index].dtTxt ?? "",
+                      );
                     },
                   ),
                 ),
                 const SizedBox(height: 20,),
-                const Text(
-                  'Sun, 5 Jan',
+                Text(
+                  AppDateTime.getDate(data[2][0].dtTxt ?? ""),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 14,
@@ -71,15 +82,19 @@ class ForecastWidget extends StatelessWidget {
                   height: 90,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 10,
+                    itemCount: data[2].length,
                     itemBuilder: (context, index) {
-                      return ForecastListWidget();
+                      return ForecastListWidget(
+                        temp: data[2][index].main?.temp ?? 0,
+                        icon: data[2][index].weather?[0].icon ?? "",
+                        time: data[2][index].dtTxt ?? "",
+                      );
                     },
                   ),
                 ),
                 const SizedBox(height: 20,),
-                const Text(
-                  'Sun, 5 Jan',
+                Text(
+                  AppDateTime.getDate(data[3][0].dtTxt ?? ""),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 14,
@@ -91,15 +106,19 @@ class ForecastWidget extends StatelessWidget {
                   height: 90,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 10,
+                    itemCount: data[3].length,
                     itemBuilder: (context, index) {
-                      return ForecastListWidget();
+                      return ForecastListWidget(
+                        temp: data[3][index].main?.temp ?? 0,
+                        icon: data[3][index].weather?[0].icon ?? "",
+                        time: data[3][index].dtTxt ?? "",
+                      );
                     },
                   ),
                 ),
                 const SizedBox(height: 20,),
-                const Text(
-                  'Sun, 5 Jan',
+                Text(
+                  AppDateTime.getDate(data[4][0].dtTxt ?? ""),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 14,
@@ -111,9 +130,13 @@ class ForecastWidget extends StatelessWidget {
                   height: 90,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 10,
+                    itemCount: data[4].length,
                     itemBuilder: (context, index) {
-                      return ForecastListWidget();
+                      return ForecastListWidget(
+                        temp: data[4][index].main?.temp ?? 0,
+                        icon: data[4][index].weather?[0].icon ?? "",
+                        time: data[4][index].dtTxt ?? "",
+                      );
                     },
                   ),
                 ),

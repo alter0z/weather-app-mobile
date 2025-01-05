@@ -10,7 +10,8 @@ class WeatherResponseModel extends WeatherResponseEntity {
     super.weather,
     super.main,
     super.wind,
-    super.dt
+    super.dt,
+    super.dtTxt
   });
 
   factory WeatherResponseModel.fromJson(Map<String, dynamic> map) {
@@ -21,7 +22,8 @@ class WeatherResponseModel extends WeatherResponseEntity {
           .toList(),
       main: map['main'] != null ? MainModel.fromJson(map['main'] as Map<String, dynamic>) : null,
       wind: map['wind'] != null ? WindModel.fromJson(map['wind'] as Map<String, dynamic>) : null,
-      dt: map['dt'] ?? 0
+      dt: map['dt'] ?? 0,
+      dtTxt: map['dt_txt'] ?? ""
     );
   }
 }

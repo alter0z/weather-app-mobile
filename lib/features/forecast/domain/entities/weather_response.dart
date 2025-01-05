@@ -10,17 +10,19 @@ class WeatherResponseEntity extends Equatable {
   final MainEntity? main;
   final WindEntity? wind;
   final int? dt;
+  final String? dtTxt;
 
   const WeatherResponseEntity({
     this.coord,
     this.weather,
     this.main,
     this.wind,
-    this.dt
+    this.dt,
+    this.dtTxt
   });
 
   @override
   List<Object?> get props {
-    return [coord, weather, main, wind, dt];
+    return [coord, weather, main, wind, dt, dtTxt];
   }
 }

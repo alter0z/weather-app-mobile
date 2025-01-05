@@ -13,8 +13,3 @@ class GetCurrentWeather extends WeatherEvent {
   const GetCurrentWeather(this.lat, this.lon);
 }
 
-class GetForecast extends WeatherEvent {
-  final double lat;
-  final double lon;
-  const GetForecast(this.lat, this.lon);
-}

@@ -13,7 +13,6 @@ class WeatherWidget extends StatelessWidget {
   final int pressure;
   final double feelsLike;
   final double wind;
-  // final Widget forecast;
   const WeatherWidget({super.key, required this.temp, required this.desc, required this.icon, required this.name, required this.humidity, required this.pressure, required this.feelsLike, required this.wind});
 
   @override
@@ -64,14 +63,13 @@ class WeatherWidget extends StatelessWidget {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              // mainAxisSize: MainAxisSize.min,
               children: [
                 CachedNetworkImage(
                   imageUrl: 'http://openweathermap.org/img/w/$icon.png',
                   imageBuilder: (context, imageProvide) => ClipRRect(
                     child: Container(
-                      width: 120,
-                      height: 120,
+                      width: 140,
+                      height: 140,
                       decoration: BoxDecoration(
                           image: DecorationImage(image: imageProvide, fit: BoxFit.cover)
                       ),
@@ -96,7 +94,7 @@ class WeatherWidget extends StatelessWidget {
                   desc,
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 20,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
                 )
